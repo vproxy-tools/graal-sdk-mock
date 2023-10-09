@@ -1,0 +1,5 @@
+rootProject.name = 'graal-sdk-mock'
+include 'word'
+include 'nativeimage'
+include 'runtime'
+

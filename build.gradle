@@ -1,0 +1,92 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    group 'io.vproxy'
+    version = '1.0.0'
+
+    java {
+        sourceCompatibility = '21'
+        targetCompatibility = '21'
+        withSourcesJar()
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    task javadocJar(type: Jar) {
+        archiveClassifier = 'javadoc'
+        from "$buildDir/docs/javadoc"
+    }
+
+    def releaseName = "graal-sdk-mock-" + project.name
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.java
+                artifactId releaseName
+
+                artifact(javadocJar)
+
+                pom {
+                    name = 'io.vproxy.' + releaseName
+                    description = releaseName
+                    url = 'https://vproxy.io'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/vproxy-tools/graal-sdk-mock/blob/master/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'wkgcass'
+                            name = 'K.G. Wang'
+                            email = 'wkgcass@hotmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/vproxy-tools/graal-sdk-mock.git'
+                        developerConnection = 'scm:git:git://github.com/vproxy-tools/graal-sdk-mock.git'
+                        url = 'https://github.com/vproxy-tools/graal-sdk-mock'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username 'wkgcass'
+                    password System.getProperty("MavenPublishPassword")
+                }
+                def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                url = version.contains('-DEV') ? snapshotsRepoUrl : releasesRepoUrl
+            }
+        }
+    }
+    if (!System.getProperty("MavenLocalInstall", "false").equals("true")) {
+        signing {
+            sign publishing.publications.maven
+        }
+    }
+}
+
+project(':word') {
+}
+
+project(':nativeimage') {
+    dependencies {
+        api project(':word')
+    }
+}
+
+project(':runtime') {
+}
