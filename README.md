@@ -24,7 +24,7 @@ For running:
 runtimeOnly 'io.vproxy:graal-sdk-mock-runtime:+'
 ```
 
-The `runtime` only provides `ImageInfo`, and only provides module `org.graalvm.nativeimage`.
+You must not use `ImageInfo`, use `ImageInfoDelegate` instead.
 
 ## Why Mock?
 
