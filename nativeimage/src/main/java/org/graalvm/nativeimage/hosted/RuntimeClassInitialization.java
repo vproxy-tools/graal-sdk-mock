@@ -5,6 +5,10 @@ public final class RuntimeClassInitialization {
         throw new UnsupportedOperationException();
     }
 
+    public static void initializeAtRunTime(Class<?>... classes) {
+        throw new UnsupportedOperationException();
+    }
+
     private RuntimeClassInitialization() {
     }
 }
