@@ -1,4 +1,4 @@
-package org.graalvm.nativeimage;
+package io.vproxy.r.org.graalvm.nativeimage;
 
 public class ImageInfoDelegate {
     private ImageInfoDelegate() {

@@ -5,4 +5,5 @@ module org.graalvm.nativeimage {
     exports org.graalvm.nativeimage.c.type;
     exports org.graalvm.nativeimage.hosted;
     exports org.graalvm.nativeimage;
+    exports io.vproxy.r.org.graalvm.nativeimage;
 }
