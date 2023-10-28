@@ -5,6 +5,10 @@ public final class CurrentIsolate {
         throw new UnsupportedOperationException();
     }
 
+    public static Isolate getIsolate() {
+        throw new UnsupportedOperationException();
+    }
+
     private CurrentIsolate() {
     }
 }
