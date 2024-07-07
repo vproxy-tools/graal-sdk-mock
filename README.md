@@ -9,7 +9,7 @@ but can be used independently as well.
 For compiling:
 
 ```groovy
-compileOnly 'io.vproxy:graal-sdk-mock-nativeimage:1.2.1'
+compileOnly 'io.vproxy:graal-sdk-mock-nativeimage:1.2.2'
 ```
 
 and in your `module-info.java`
@@ -21,7 +21,7 @@ requires org.graalvm.nativeimage;
 For running:
 
 ```groovy
-runtimeOnly 'io.vproxy:graal-sdk-mock-runtime:1.2.1'
+runtimeOnly 'io.vproxy:graal-sdk-mock-runtime:1.2.2'
 ```
 
 You must not use `ImageInfo`, use `ImageInfoDelegate` instead.
