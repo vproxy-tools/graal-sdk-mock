@@ -12,7 +12,7 @@ subprojects {
     apply plugin: 'org.jreleaser'
 
     group 'io.vproxy'
-    version = '1.2.2'
+    version = '1.2.3'
 
     java {
         sourceCompatibility = '21'
